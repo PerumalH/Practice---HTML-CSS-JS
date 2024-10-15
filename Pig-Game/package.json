@@ -4,6 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
+    "compile:sass": "sass sass/_main.scss sass/style.css -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Perumal-HpK",

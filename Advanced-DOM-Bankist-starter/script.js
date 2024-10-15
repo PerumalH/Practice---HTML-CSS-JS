@@ -30,43 +30,63 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+// page Navigation
+
+// document.querySelectorAll('.nav__link').forEach(function (e) {
+//   e.addEventListener('click', function (e1) {
+//     e1.preventDefault();
+
+//     const ID = this.getAttribute('href');
+//     console.log(ID);
+//     document.querySelector(ID).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const ID = e.target.getAttribute('href');
+
+  document.querySelector(ID).scrollIntoView({ behavior: 'smooth' });
+});
+
 // creating and inserting elements
 // .insertAdjacentHTML
 
-const header = document.querySelector('.header');
+// const header = document.querySelector('.header');
 
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-// message.textContent =
-//   'We use cookied for improved functionality and analytics.';
+// const message = document.createElement('div');
+// message.classList.add('cookie-message');
+// // message.textContent =
+// //   'We use cookied for improved functionality and analytics.';
 
-message.innerHTML =
-  'We use cookied for improved functionality and analytics. <button class="btn btn-close-cookie">Got it!</button>';
+// message.innerHTML =
+//   'We use cookied for improved functionality and analytics. <button class="btn btn-close-cookie">Got it!</button>';
 
-header.append(message);
-// header.prepend(message);- it'll start of the list in the header element
-// header.before(message); - before the header elements
-// header.after(message);
-// header.after(message.cloneNode(true));
+// header.append(message);
+// // header.prepend(message);- it'll start of the list in the header element
+// // header.before(message); - before the header elements
+// // header.after(message);
+// // header.after(message.cloneNode(true));
 
-const closebutton = document.querySelector('.btn-close-cookie');
+// const closebutton = document.querySelector('.btn-close-cookie');
 
-closebutton.addEventListener('click', () => {
-  // message.remove();
-  message.parentElement.removeChild(message);
-});
+// closebutton.addEventListener('click', () => {
+//   // message.remove();
+//   message.parentElement.removeChild(message);
+// });
 
-//style
+// //style
 
-message.style.backgroundColor = 'grey';
-message.style.width = '120%';
+// message.style.backgroundColor = 'grey';
+// message.style.width = '120%';
 
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
 
-document.documentElement.style.setProperty('--color-primary', 'orangered');
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
 
-//attributes
+// //attributes
 
 // const logo = document.querySelector('.nav__logo');
 
@@ -81,6 +101,7 @@ document.documentElement.style.setProperty('--color-primary', 'orangered');
 // //Data attributes - start with a name attributes
 
 // console.log(logo.dataset.version);
+//  scrolltoo 1
 
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 
@@ -108,3 +129,28 @@ btnScrollTo.addEventListener('click', e => {
 
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+// Dom Traversing
+
+const h11 = document.querySelector('h1');
+
+// //Going downwards: child
+// console.log(h11.querySelectorAll('.highlight'));
+// console.log(h11.childNodes);
+// console.log(h11.children);
+// h11.firstElementChild.style.color = 'white';
+// h11.lastElementChild.style.color = 'orangered';
+
+// //going upwards : Parents
+// console.log(h11.parentNode);
+// console.log(h11.parentElement);
+
+// h11.closest('.header').style.background = 'var( --gradient-secondary)';
+
+// //going sideways: siblings
+
+// console.log(h11.previousElementSibling);
+// console.log(h11.nextElementSibling);
+
+// console.log(h11.previousSibling);
+// console.log(h11.nextSibling);

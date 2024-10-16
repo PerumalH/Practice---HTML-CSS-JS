@@ -8,6 +8,18 @@ const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+const nav = document.querySelector('.nav');
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+
+const section1 = document.getElementById('section--1');
+
+const header = document.querySelector('header');
+
 const openModal = function (e) {
   e.preventDefault();
   modal.classList.remove('hidden');
@@ -45,9 +57,177 @@ document.addEventListener('keydown', function (e) {
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
 
-  const ID = e.target.getAttribute('href');
+  if (e.target.classList.contains('nav__link')) {
+    const ID = e.target.getAttribute('href');
+    document.querySelector(ID).scrollIntoView({ behavior: 'smooth' });
+  }
+});
 
-  document.querySelector(ID).scrollIntoView({ behavior: 'smooth' });
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  if (!clicked) return;
+  //active tab
+  tabsContent.forEach(t => t.classList.remove('operations__content--active'));
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  //active container
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
+// menu fade animation
+
+const handleHover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+    siblings.forEach(el => {
+      if (el !== link) {
+        el.style.opacity = this;
+      }
+    });
+    logo.style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', handleHover.bind('.5'));
+
+nav.addEventListener('mouseout', handleHover.bind(1));
+
+// sticky bar
+
+// window.addEventListener('scroll', function (e) {
+//   const initial = section1.getBoundingClientRect();
+
+//   if (window.scrollY > initial.top) {
+//     nav.classList.add('sticky');
+//   } else nav.classList.remove('sticky');
+// });
+
+// sticky navigation : intersection observer API
+
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// };
+
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 0.2],
+// };
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+
+// observer.observe(section1);
+
+const headerCallbak = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) {
+    nav.classList.add('sticky');
+  } else nav.classList.remove('sticky');
+};
+const navigation = nav.getBoundingClientRect();
+const navHeight = navigation.height;
+
+const headerObserver = new IntersectionObserver(headerCallbak, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+headerObserver.observe(header);
+
+const allSection = document.querySelectorAll('.section');
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const revealObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSection.forEach(section => {
+  revealObserver.observe(section);
+  section.classList.add('section--hidden');
+});
+
+//lazy load image
+
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+
+  console.log(entry);
+
+  if (!entry.isIntersecting) return;
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imgTargets.forEach(img => imgObserver.observe(img));
+
+// slider
+
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRth = document.querySelector('.slider__btn--right');
+const dotContainer = document.querySelector('.dots');
+let curSlide = 0;
+
+const maxSlides = slides.length;
+
+const goToSlide = function (visible) {
+  slides.forEach((sl, i) => {
+    sl.style.transform = `translateX(${100 * (i - visible)}%)`;
+  });
+};
+
+goToSlide(0);
+
+const NextSlide = () => {
+  if (curSlide === maxSlides - 1) {
+    curSlide = 0;
+  } else {
+    curSlide++;
+  }
+  goToSlide(curSlide);
+};
+const PrevSlide = () => {
+  if (curSlide === 0) {
+    curSlide = maxSlides - 1;
+  } else {
+    curSlide--;
+  }
+
+  goToSlide(curSlide);
+};
+
+btnLeft.addEventListener('click', PrevSlide);
+btnRth.addEventListener('click', NextSlide);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowLeft') PrevSlide();
+  e.key === 'ArrowRight' && NextSlide();
 });
 
 // creating and inserting elements
@@ -103,10 +283,6 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 // console.log(logo.dataset.version);
 //  scrolltoo 1
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-
-const section1 = document.getElementById('section--1');
-
 btnScrollTo.addEventListener('click', e => {
   // by coordinate - we do scrolling on button click
 
@@ -132,7 +308,7 @@ btnScrollTo.addEventListener('click', e => {
 
 // Dom Traversing
 
-const h11 = document.querySelector('h1');
+// const h11 = document.querySelector('h1');
 
 // //Going downwards: child
 // console.log(h11.querySelectorAll('.highlight'));

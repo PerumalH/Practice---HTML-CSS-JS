@@ -247,3 +247,13 @@ EV.prototype = Object.create(Car.prototype);
 const Ecar = new EV(99, 20);
 
 Ecar.accelerate();
+
+/*
+
+ES6 - extends and super.
+object create - link the object.
+
+# -start with # to make private property and methods
+
+
+*/

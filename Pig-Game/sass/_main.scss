@@ -23,11 +23,22 @@ body {
   overflow: hidden;
 
   .player1 {
-    background-color: rgba(0, 0, 0, 0.759);
+    background-color: rgb(0, 0, 0);
     width: 50%;
     color: white;
     text-align: center;
     align-content: space-evenly;
+    &-active {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      font-size: 2rem;
+      transition: all 0.3s ease-in-out;
+
+      &::before {
+        content: "💚";
+      }
+    }
     &_ {
       height: 15rem;
       &tag {
@@ -64,6 +75,17 @@ body {
     color: rgb(10, 10, 10);
     text-align: center;
     align-content: space-evenly;
+    &-active {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 2rem;
+      transition: all 0.3s ease-in-out;
+
+      &::before {
+        content: "💙";
+      }
+    }
     &_ {
       height: 15rem;
       &tag {
@@ -104,6 +126,12 @@ body {
     text-transform: uppercase;
     font-weight: bolder;
     cursor: pointer;
+    transition: all 0.3s ease-in;
+
+    &:link,
+    &:active {
+      transform: translateY(3px);
+    }
   }
 
   .hold {
@@ -120,5 +148,20 @@ body {
     position: absolute;
     top: 10%;
     left: 43.2%;
+  }
+  .DiceScreen {
+    text-align: center;
+    font-size: 6rem;
+    align-content: center;
+    background-color: #09e0e0cf;
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 3px;
+    position: absolute;
+    top: 30%;
+    left: 43.2%;
+  }
+  .hidden {
+    display: none;
   }
 }

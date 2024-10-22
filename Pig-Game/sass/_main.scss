@@ -164,4 +164,10 @@ body {
   .hidden {
     display: none;
   }
+  .winner1 {
+    background-image: linear-gradient(to bottom, black, white);
+  }
+  .winner2 {
+    background-image: linear-gradient(to bottom, white, black);
+  }
 }

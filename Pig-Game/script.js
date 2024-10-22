@@ -76,6 +76,7 @@ class pigGame {
   currentPlayer;
   #playerScore;
   #playerCurScore;
+  #currentScore = 0;
   constructor(curply) {
     this.currentPlayer = curply;
     this.#setCurrentPlayer();
@@ -102,13 +103,19 @@ class pigGame {
         this.currentPlayer = +actply.dataset.id;
       }
     });
-    document.querySelector(".DiceScreen").textContent = 0;
+    document.querySelector(".DiceScreen").textContent = "";
   }
   #reset() {
     resetScore.forEach((score) => (score.textContent = 0));
     document.querySelector(".player1-active").classList.remove("hidden");
     document.querySelector(".player2-active").classList.add("hidden");
     document.querySelector(".DiceScreen").textContent = "";
+    document.querySelector(".player1").classList.remove("winner1");
+    document.querySelector(".player2").classList.remove("winner2");
+    rolldice.classList.remove("hidden");
+    hold.classList.remove("hidden");
+    this.currentPlayer = 1;
+    this.#setCurrentPlayer();
   }
   #addscore() {
     this.#playerScore.textContent =
@@ -118,10 +125,18 @@ class pigGame {
   newGame() {
     this.#reset();
   }
+  #winnerMessage() {
+    document
+      .querySelector(`.player${this.currentPlayer}`)
+      .classList.add(`winner${this.currentPlayer}`);
+    this.#playerCurScore.textContent = 0;
+    document.querySelector(".DiceScreen").textContent = "";
+    rolldice.classList.add("hidden");
+    hold.classList.add("hidden");
+  }
   #winnercheck() {
-    if (+this.#playerScore.textContent >= 100) {
-      alert(`Player${this.currentPlayer} Wins`);
-
+    if (+this.#playerScore.textContent >= 20) {
+      this.#winnerMessage();
       return 0;
     }
     return 1;
@@ -131,8 +146,6 @@ class pigGame {
     if (isWinner === 1) {
       this.#switch();
       this.#setCurrentPlayer();
-    } else {
-      this.#reset();
     }
   }
   hold() {
@@ -145,7 +158,16 @@ class pigGame {
     if (Value !== 1) {
       this.#playerCurScore.textContent =
         Value + +this.#playerCurScore.textContent;
-    } else {
+    }
+
+    if (
+      +this.#playerCurScore.textContent + +this.#playerScore.textContent >=
+      20
+    ) {
+      this.#addscore();
+      this.#winnerMessage();
+    }
+    if (Value === 1) {
       this.#addscore();
       this.#isWinner();
     }

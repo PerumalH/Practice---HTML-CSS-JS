@@ -147,5 +147,11 @@ body {
 .container .hidden {
   display: none;
 }
+.container .winner1 {
+  background-image: linear-gradient(to bottom, black, white);
+}
+.container .winner2 {
+  background-image: linear-gradient(to bottom, white, black);
+}
 
 /*# sourceMappingURL=style.css.map */

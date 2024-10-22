@@ -1,0 +1,10 @@
+Project Planning
+
+1.UserStory 
+
+-search for recipes, so that i can find new ideas for meals.
+- udpate the number of servings
+-bookmark recipes.
+-create my own recipes
+- see my bookmark and own recipes
+

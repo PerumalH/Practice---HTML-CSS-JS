@@ -1,25 +1,36 @@
-// const secureBooking = function () {
-//   let passCount = 0;
+const secureBooking = () => {
+  const passCount = 0; //0
+  function b() {
+    console.log("kakd");
+  }
 
-//   return function () {
-//     passCount++;
-//     console.log(passCount);
-//   };
-// };
+  return function () {
+    // passCount++;
+    b();
+    console.log(passCount);
+  };
+};
+let x;
+console.log(x);
+x = 9;
+//closure: inline function could access the parent scoped variable and function, even parent function was executed.
+//closure would create, whenever function was created.
+const booker = secureBooking();
+booker();
+console.dir(booker);
+booker();
+console.dir(booker);
 
-// const booker = secureBooking();
-// booker();
-
-// (function () {
-//   const header = document.querySelector("h1");
-//   header.style.color = "blue";
-//   let i = 0;
-//   document.body.addEventListener("click", function () {
-//     if (i % 2 == 0) header.style.color = "red";
-//     else header.style.color = "blue";
-//     i++;
-//   });
-// })();
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "blue";
+  let i = 0;
+  document.body.addEventListener("click", function () {
+    if (i % 2 == 0) header.style.color = "red";
+    else header.style.color = "blue";
+    i++;
+  });
+})();
 
 const hold = document.querySelector(".hold");
 const rolldice = document.querySelector(".rollDice");

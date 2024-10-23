@@ -25,7 +25,7 @@ body {
   .player1 {
     background-color: rgb(0, 0, 0);
     width: 50%;
-    color: white;
+    color: #ecf0f1;
     text-align: center;
     align-content: space-evenly;
     &-active {
@@ -52,7 +52,7 @@ body {
     }
     &_currentScore {
       margin: 0 auto;
-      background-color: white;
+      background-color: #ecf0f1;
       width: 50%;
       height: 22%;
       border-radius: 1rem;
@@ -165,9 +165,9 @@ body {
     display: none;
   }
   .winner1 {
-    background-image: linear-gradient(to bottom, black, white);
+    background-image: linear-gradient(to bottom, black, #ecf0f1);
   }
   .winner2 {
-    background-image: linear-gradient(to bottom, white, black);
+    background-image: linear-gradient(to bottom, #ecf0f1, black);
   }
 }

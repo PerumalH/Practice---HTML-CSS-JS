@@ -38,6 +38,7 @@ const newGame = document.querySelector(".new_game");
 const activeChange = document.querySelectorAll("[class*=active]");
 const resetScore = document.querySelectorAll("[class*=score]");
 
+// learned React hook Form
 // let currentPlayer = 1;
 
 // const playerCurScore = document.querySelector(

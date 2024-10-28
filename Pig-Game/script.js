@@ -39,7 +39,7 @@ const activeChange = document.querySelectorAll("[class*=active]");
 const resetScore = document.querySelectorAll("[class*=score]");
 
 // learned React hook Form
-// half Logic - completed
+// half Logic - completed - full logic - need to check the bugs
 // let currentPlayer = 1;
 
 // const playerCurScore = document.querySelector(

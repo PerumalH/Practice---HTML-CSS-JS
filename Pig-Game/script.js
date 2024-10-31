@@ -41,6 +41,7 @@ const resetScore = document.querySelectorAll("[class*=score]");
 // learned React hook Form
 // half Logic - completed - full logic - need to check the bugs
 // custom Hook
+// Started System design
 // let currentPlayer = 1;
 
 // const playerCurScore = document.querySelector(

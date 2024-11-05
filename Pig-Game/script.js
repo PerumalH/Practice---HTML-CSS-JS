@@ -43,6 +43,7 @@ const resetScore = document.querySelectorAll("[class*=score]");
 // custom Hook
 // Started System design
 // Form Validation
+// revisit useContext
 // let currentPlayer = 1;
 
 // const playerCurScore = document.querySelector(

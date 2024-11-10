@@ -196,3 +196,5 @@ const Game = new pigGame(1);
 newGame.addEventListener("click", Game.newGame.bind(Game));
 hold.addEventListener("click", Game.hold.bind(Game));
 rolldice.addEventListener("click", Game.rolldice.bind(Game));
+
+// learned about redux toolkit and thunk.
